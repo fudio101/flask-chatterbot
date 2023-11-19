@@ -1,22 +1,28 @@
+# pip install git+https://github.com/dsdanielpark/Bard-API.git
 from flask import Flask, render_template, request
-from chatterbot import ChatBot
-from chatterbot.trainers import ChatterBotCorpusTrainer
+from bardapi import BardCookies
 
 app = Flask(__name__)
+cookie_dict = {
+    "__Secure-1PSID": "xxxx",
+    "__Secure-1PSIDTS": "xxxx",
+    "__Secure-1PSIDCC": "xxxx"
+}
 
-english_bot = ChatBot("Chatterbot", storage_adapter="chatterbot.storage.SQLStorageAdapter")
-trainer = ChatterBotCorpusTrainer(english_bot)
-trainer.train("chatterbot.corpus.english")
+bard = BardCookies(cookie_dict=cookie_dict)
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
+
 @app.route("/get")
 def get_bot_response():
-    userText = request.args.get('msg')
-    return str(english_bot.get_response(userText))
+    query = request.args.get('msg')
+    response = bard.get_answer(query)['content']
+
+    return response
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=54321)

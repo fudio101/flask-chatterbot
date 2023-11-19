@@ -1,29 +1,24 @@
-# flask-chatterbot
+# ChatbotUI Template
+A simple Python implementation of Chatbot UI for Web Service.
+**Note**: This is a slight modification of the project https://github.com/chamkank/flask-chatterbot
+## Requirement
+- Python 3
+- Flask
 
-#### A web implementation of [ChatterBot](https://github.com/gunthercox/ChatterBot) using Flask.
+## Usage
+<center><img src="img/example.png"></center>
 
-## Local Setup:
- 1. Ensure that Python, Flask, SQLAlchemy, and ChatterBot are installed (either manually, or run `pip install -r requirements.txt`).
- 2. Run *app.py* with `python app.py`.
- 3. The demo will be live at [http://localhost:5000/](http://localhost:5000/)
+One could freely customize your response generation in app.py, such as a rule-based chatbot, a generative or retrieval chatbot, all up to you.
 
-## How do I deploy this to a web server?
-If you do not have a dedicated server, I highly recommend using [PythonAnywhere](https://www.pythonanywhere.com/), [AWS](https://aws.amazon.com/getting-started/projects/deploy-python-application/) or [Heroku](https://devcenter.heroku.com/articles/getting-started-with-python#introduction) to host your application.
+Just run the app.py and navigate to the corresponding address in your explorer.
+~~~Python
+$ pip install -r requirements.txt
 
-### Deploying on Heroku
-If you are deploying on Heroku, you will have to change the database adapter from `chatterbot.storage.SQLStorageAdapter` to `chatterbot.storage.MongoDatabaseAdapter` since SQLite3 isn't supported. To do this simply change the following line:
+# issue the command
+$ python app.py
 
-`english_bot = ChatBot("English Bot", storage_adapter="chatterbot.storage.SQLStorageAdapter")`
+# Then you should see the following info in your console, just navigate to this address in your explorer
+ * Running on http://0.0.0.0:54321/ (Press CTRL+C to quit)
 
-... to use the MongoDB adapter:
-
-```
-english_bot = ChatBot("English Bot", 
-                     storage_adapter = "chatterbot.storage.MongoDatabaseAdapter",
-                     database = mongodb_name,
-                     database_uri = mongodb_uri)
-```
-... where `mongodb_name` is the name of the database you wish to connect to and `mongodb_uri` is the URI of a remote instance of MongoDB.
-
-## License
-This source is free to use, but ChatterBot does have a license which still applies and can be found on the [LICENSE](https://github.com/gunthercox/ChatterBot/blob/master/LICENSE) page.
+# Then you should see the above figure in your explorer
+~~~
